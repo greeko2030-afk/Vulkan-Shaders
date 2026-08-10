@@ -1,4 +1,4 @@
-name: Build Vulkan Shaders Mod
+name: Build Vulkan Shaders Mod (Without Gradle Wrapper)
 
 on:
   push:
@@ -21,14 +21,15 @@ jobs:
         distribution: 'temurin'
         cache: 'gradle'
 
-    # (Optional) Install Vulkan SDK if you want to compile .glsl to .spv during the build process
-    - name: Install Vulkan SDK
+    # Install Vulkan SDK and standard Gradle on the Ubuntu runner
+    - name: Install Vulkan SDK and Gradle
       run: |
         sudo apt-get update
-        sudo apt-get install -y vulkan-tools libvulkan-dev glslang-tools
+        sudo apt-get install -y vulkan-tools libvulkan-dev glslang-tools gradle
 
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
+    # Build the mod using system-wide Gradle instead of gradlew
+    - name: Build with Gradle
+      run: gradle build
 
     - name: Upload Build Artifacts
       uses: actions/upload-artifact@v4
