@@ -12,7 +12,7 @@
     "sources": "https://github.com/greeko2030-afk/vulkan-shaders"
   },
   "license": "MIT",
-  "icon": "assets/vulkanmod/icon.png",
+  "icon": "assets/vulkan-shaders/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
